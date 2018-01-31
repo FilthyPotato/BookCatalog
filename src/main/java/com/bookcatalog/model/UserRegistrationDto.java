@@ -11,7 +11,7 @@ import javax.validation.constraints.Size;
 @Data
 @PasswordMatches
 public class UserRegistrationDto {
-    @NotEmpty 
+    @NotEmpty
     @Size(min = 2)
     private String username;
     @NotEmpty

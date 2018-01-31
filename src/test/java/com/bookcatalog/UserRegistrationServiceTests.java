@@ -5,6 +5,7 @@ import com.bookcatalog.model.User;
 import com.bookcatalog.model.UserRegistrationDto;
 import com.bookcatalog.repositories.UserRepository;
 import com.bookcatalog.validation.EmailExistsException;
+import com.bookcatalog.validation.UsernameExistsException;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,7 +29,7 @@ public class UserRegistrationServiceTests {
     private User newlyCreatedUser;
 
     @Before
-    public void setUp() throws EmailExistsException {
+    public void setUp() throws EmailExistsException, UsernameExistsException {
         userRegistrationService = new UserRegistrationService(userRepository);
 
         userRegistrationDto = new UserRegistrationDto();
@@ -69,14 +70,26 @@ public class UserRegistrationServiceTests {
     }
 
     @Test(expected = EmailExistsException.class)
-    public void throwsEmailExistsExceptionWhenUserWithGivenEmailAlreadyExists() throws EmailExistsException {
+    public void throwsEmailExistsExceptionWhenUserWithGivenEmailAlreadyExists() throws EmailExistsException, UsernameExistsException {
         Mockito.when(userRepository.findByEmail("test@test.com")).thenReturn(new User());
         userRegistrationService.registerNewUserAccount(userRegistrationDto);
     }
 
     @Test(expected = Test.None.class)
-    public void doesntThrowsEmailExistsExceptionIfUserDoesntExistsYet() throws EmailExistsException {
+    public void doesNotThrowsEmailExistsExceptionIfUserDoesNotExistsYet() throws EmailExistsException, UsernameExistsException {
+        Mockito.when(userRepository.findByEmail("test@test.com")).thenReturn(null);
         userRegistrationService.registerNewUserAccount(userRegistrationDto);
     }
 
+    @Test(expected = UsernameExistsException.class)
+    public void throwsUsernameExistsExceptionWhenUserAlreadyExists() throws EmailExistsException, UsernameExistsException {
+        Mockito.when(userRepository.findByUsername("user1")).thenReturn(new User());
+        userRegistrationService.registerNewUserAccount(userRegistrationDto);
+    }
+
+    @Test(expected = Test.None.class)
+    public void doesNotThrowUsernameExistsExceptionWhenUserDoesNotExistYet() throws EmailExistsException, UsernameExistsException {
+        Mockito.when(userRepository.findByUsername("user1")).thenReturn(null);
+        userRegistrationService.registerNewUserAccount(userRegistrationDto);
+    }
 }
