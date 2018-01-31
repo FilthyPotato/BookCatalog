@@ -1,6 +1,5 @@
 package com.bookcatalog;
 
-import org.mockito.Matchers;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,7 +24,7 @@ public class MailServiceTests {
     }
 
     @Test
-    public void sendMailSucceeded() {
+    public void sendSendsMail() {
         mailService.send(mailMessage);
         Mockito.verify(javaMailSender, Mockito.times(1)).send(mailMessage);
     }
@@ -42,7 +41,7 @@ JavaMailSender is responsible for sending the mail, so JavaMailSender#send invok
 Also no need to test if the mail has been sent to proper destination and with proper data since JavaMailSender is
 responsible for taking care of it.
 
-2.
+2. (Is this an integration test?)
 public void send(String from, String to, String subject, String body) {
     SimpleMailMessage mailMessage = new SimpleMailMessage();
     mailMessage.setTo(to);
@@ -58,6 +57,7 @@ assertReceivedMessage(wiser)
     .withSubject("subject")
     .withContent("body");
 
-3. If you send an mail via REST endpoint, do the same as in 2.
+3. (This is an integration test)
+If you send an mail via REST endpoint, do the same as in 2.
 (see http://blog.codeleak.pl/2014/09/testing-mail-code-in-spring-boot.html)
 */
