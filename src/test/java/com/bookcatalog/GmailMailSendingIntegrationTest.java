@@ -8,11 +8,11 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-//Integration test
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
 @PropertySource("gmail.properties")
-public class GmailMailSendingTests {
+public class GmailMailSendingIntegrationTest {
     @Autowired
     private MailService mailService;
 
