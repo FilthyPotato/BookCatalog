@@ -26,8 +26,10 @@ public class VerificationToken {
     @JoinColumn(nullable = false, name = "user_id")
     private User user;
 
-    public VerificationToken() {
+    public VerificationToken(User user, String token) {
         this(Clock.systemDefaultZone());
+        this.token = token;
+        this.user = user;
     }
 
     public VerificationToken(Clock clock) {
