@@ -1,6 +1,6 @@
 package com.bookcatalog.integration;
 
-import com.bookcatalog.MailService;
+import com.bookcatalog.registration.MailService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
