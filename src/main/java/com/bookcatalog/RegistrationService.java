@@ -21,7 +21,6 @@ public class RegistrationService {
         this.registrationMailGenerator = registrationMailGenerator;
     }
 
-    //initRegistrationConfirmation
     public void initRegistrationConfirmation(User user, String host, String contextName) {
         VerificationToken verificationToken = verificationTokenMaker.createVerificationToken(user);
         verificationTokenRepository.save(verificationToken);

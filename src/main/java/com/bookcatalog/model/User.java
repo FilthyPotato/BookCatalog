@@ -15,7 +15,7 @@ public class User {
     @Column(length = 60)    // BCrypt's string is 60 characters long
     private String password;
     private String email;
-    private boolean enabled;
+    private boolean enabled = false;
 
     @ManyToMany
     @JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
