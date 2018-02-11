@@ -1,4 +1,4 @@
-package com.bookcatalog.registration.validation;
+package com.bookcatalog.registration.validation.exceptions;
 
 public class UsernameExistsException extends RuntimeException {
 

@@ -4,8 +4,8 @@ import com.bookcatalog.registration.model.User;
 import com.bookcatalog.registration.model.VerificationToken;
 import com.bookcatalog.registration.repositories.UserRepository;
 import com.bookcatalog.registration.repositories.VerificationTokenRepository;
-import com.bookcatalog.registration.validation.InvalidTokenException;
-import com.bookcatalog.registration.validation.TokenExpiredException;
+import com.bookcatalog.registration.validation.exceptions.InvalidTokenException;
+import com.bookcatalog.registration.validation.exceptions.TokenExpiredException;
 
 public class AccountActivationService {
     private VerificationTokenRepository verificationTokenRepository;

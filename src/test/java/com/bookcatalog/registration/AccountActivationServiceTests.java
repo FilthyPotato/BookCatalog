@@ -1,14 +1,13 @@
 package com.bookcatalog.registration;
 
-import com.bookcatalog.registration.AccountActivationService;
 import com.bookcatalog.registration.model.User;
 import com.bookcatalog.registration.model.VerificationToken;
 import com.bookcatalog.registration.repositories.UserRepository;
 import com.bookcatalog.registration.repositories.VerificationTokenRepository;
-import com.bookcatalog.registration.validation.InvalidTokenException;
-import com.bookcatalog.registration.validation.TokenExpiredException;
-import org.junit.Test;
+import com.bookcatalog.registration.validation.exceptions.InvalidTokenException;
+import com.bookcatalog.registration.validation.exceptions.TokenExpiredException;
 import org.junit.Before;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Spy;
@@ -16,9 +15,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 
 @RunWith(MockitoJUnitRunner.class)
