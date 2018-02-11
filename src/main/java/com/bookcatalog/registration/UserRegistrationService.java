@@ -1,12 +1,10 @@
 package com.bookcatalog.registration;
 
-import com.bookcatalog.registration.model.Role;
 import com.bookcatalog.registration.model.User;
 import com.bookcatalog.registration.model.UserRegistrationDto;
 import com.bookcatalog.registration.repositories.RoleRepository;
-import com.bookcatalog.registration.repositories.UserRepository;
-import com.bookcatalog.registration.validation.EmailExistsException;
-import com.bookcatalog.registration.validation.UsernameExistsException;
+import com.bookcatalog.registration.validation.exceptions.EmailExistsException;
+import com.bookcatalog.registration.validation.exceptions.UsernameExistsException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,20 +12,20 @@ import java.util.Arrays;
 
 @Service
 public class UserRegistrationService {
-    private UserRepository userRepository;
+    private UserService userService;
     private RoleRepository roleRepository;
 
     @Autowired
-    public UserRegistrationService(UserRepository userRepository, RoleRepository roleRepository) {
-        this.userRepository = userRepository;
+    public UserRegistrationService(UserService userService, RoleRepository roleRepository) {
+        this.userService = userService;
         this.roleRepository = roleRepository;
     }
 
     public User registerNewUserAccount(UserRegistrationDto userRegistrationDto) throws EmailExistsException, UsernameExistsException {
-        if (emailExists(userRegistrationDto.getEmail())) {
+        if (userService.emailExists(userRegistrationDto.getEmail())) {
             throw new EmailExistsException();
         }
-        if (usernameExists(userRegistrationDto.getUsername())) {
+        if (userService.usernameExists(userRegistrationDto.getUsername())) {
             throw new UsernameExistsException();
         }
 
@@ -37,15 +35,8 @@ public class UserRegistrationService {
         user.setPassword(userRegistrationDto.getPassword());
         user.setEnabled(false);
         user.setRoles(Arrays.asList(roleRepository.findByName("ROLE_USER")));
-        userRepository.save(user);
+        userService.save(user);
         return user;
     }
 
-    private boolean usernameExists(String username) {
-        return userRepository.findByUsername(username) != null;
-    }
-
-    private boolean emailExists(String email) {
-        return userRepository.findByEmail(email) != null;
-    }
 }
