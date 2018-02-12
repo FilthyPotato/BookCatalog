@@ -12,7 +12,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
-@PropertySource("gmail.properties")
+@PropertySource("classpath:gmail.properties")
 public class GmailMailSendingIntegrationTest {
     @Autowired
     private MailService mailService;
