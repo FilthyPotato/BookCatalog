@@ -1,7 +1,9 @@
 package com.bookcatalog.registration;
 
 import org.springframework.mail.SimpleMailMessage;
+import org.springframework.stereotype.Service;
 
+@Service
 class RegistrationMailGenerator {
     private ActivationLinkMaker activationLinkMaker;
 

@@ -1,8 +1,10 @@
-package com.bookcatalog;
+package com.bookcatalog.registration.validation;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 @Getter
+@EqualsAndHashCode
 public class FieldError {
     private String field;
     private String message;
