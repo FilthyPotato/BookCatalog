@@ -1,7 +1,7 @@
 package com.bookcatalog.registration.validation;
 
 import com.bookcatalog.registration.UserService;
-import com.bookcatalog.registration.model.UserRegistrationDto;
+import com.bookcatalog.registration.model.UserDto;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
@@ -16,12 +16,12 @@ public class UserRegistrationDtoValidator implements Validator {
 
     @Override
     public boolean supports(Class<?> clazz) {
-        return UserRegistrationDto.class.equals(clazz);
+        return UserDto.class.equals(clazz);
     }
 
     @Override
     public void validate(Object target, Errors errors) {
-        UserRegistrationDto dto = (UserRegistrationDto) target;
+        UserDto dto = (UserDto) target;
         if (userService.usernameExists(dto.getUsername())) {
             errors.rejectValue("username", "","This username is already taken.");
         }

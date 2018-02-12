@@ -3,7 +3,7 @@ package com.bookcatalog.registration.controllers;
 import com.bookcatalog.registration.RegistrationMailSender;
 import com.bookcatalog.registration.UserRegistrationService;
 import com.bookcatalog.registration.model.User;
-import com.bookcatalog.registration.model.UserRegistrationDto;
+import com.bookcatalog.registration.model.UserDto;
 import com.bookcatalog.registration.validation.UserRegistrationDtoValidator;
 import com.bookcatalog.registration.validation.exceptions.ValidationException;
 import org.junit.Before;
@@ -31,7 +31,7 @@ public class RegistrationControllerTests {
     @InjectMocks
     private RegistrationController registrationController;
     @Mock
-    private UserRegistrationDto userRegistrationDto;
+    private UserDto userDto;
     @Mock
     private BindingResult bindingResult;
     @Mock
@@ -56,17 +56,17 @@ public class RegistrationControllerTests {
     public void registerRegistersNewAccount(){
         when(bindingResult.hasErrors()).thenReturn(false);
 
-        registrationController.register(userRegistrationDto, bindingResult, webRequest);
+        registrationController.register(userDto, bindingResult, webRequest);
 
-        verify(userRegistrationService, times(1)).registerNewUserAccount(userRegistrationDto);
+        verify(userRegistrationService, times(1)).registerNewUserAccount(userDto);
     }
 
     @Test
     public void registerSendsActivationMail() {
         when(bindingResult.hasErrors()).thenReturn(false);
         when(webRequest.getContextPath()).thenReturn(notRelevant);
-        when(userRegistrationService.registerNewUserAccount(userRegistrationDto)).thenReturn(user);
-        registrationController.register(userRegistrationDto, bindingResult, webRequest);
+        when(userRegistrationService.registerNewUserAccount(userDto)).thenReturn(user);
+        registrationController.register(userDto, bindingResult, webRequest);
 
         verify(registrationMailSender).sendRegistrationMail(eq(user), Matchers.any(String.class), eq(notRelevant));
     }

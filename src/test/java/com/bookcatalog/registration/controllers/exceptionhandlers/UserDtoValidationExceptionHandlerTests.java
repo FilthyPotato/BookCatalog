@@ -1,6 +1,6 @@
 package com.bookcatalog.registration.controllers.exceptionhandlers;
 
-import com.bookcatalog.registration.model.UserRegistrationDto;
+import com.bookcatalog.registration.model.UserDto;
 import com.bookcatalog.registration.model.ValidationErrorDto;
 import com.bookcatalog.registration.validation.FieldError;
 import com.bookcatalog.registration.validation.exceptions.ValidationException;
@@ -19,7 +19,7 @@ public class UserDtoValidationExceptionHandlerTests {
     private UserDtoValidationExceptionHandler userDtoValidationExceptionHandler;
     private String notRelevant = "test";
     private BindingResult binding;
-    private UserRegistrationDto notRelevantDto = new UserRegistrationDto();
+    private UserDto notRelevantDto = new UserDto();
 
     @Before
     public void setUp() {

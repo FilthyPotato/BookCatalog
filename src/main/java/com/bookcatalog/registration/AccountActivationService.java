@@ -6,7 +6,9 @@ import com.bookcatalog.registration.repositories.UserRepository;
 import com.bookcatalog.registration.repositories.VerificationTokenRepository;
 import com.bookcatalog.registration.validation.exceptions.InvalidTokenException;
 import com.bookcatalog.registration.validation.exceptions.TokenExpiredException;
+import org.springframework.stereotype.Service;
 
+@Service
 public class AccountActivationService {
     private VerificationTokenRepository verificationTokenRepository;
     private UserRepository userRepository;

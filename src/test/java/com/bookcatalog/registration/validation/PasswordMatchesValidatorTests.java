@@ -1,6 +1,6 @@
 package com.bookcatalog.registration.validation;
 
-import com.bookcatalog.registration.model.UserRegistrationDto;
+import com.bookcatalog.registration.model.UserDto;
 import org.junit.Test;
 import org.mockito.Mock;
 
@@ -26,11 +26,11 @@ public class PasswordMatchesValidatorTests {
     }
 
     private boolean isValid(String password, String confirmPassword) {
-        UserRegistrationDto userRegistrationDto = new UserRegistrationDto();
-        userRegistrationDto.setPassword(password);
-        userRegistrationDto.setConfirmPassword(confirmPassword);
+        UserDto userDto = new UserDto();
+        userDto.setPassword(password);
+        userDto.setConfirmPassword(confirmPassword);
 
         PasswordMatchesValidator passwordMatchesValidator = new PasswordMatchesValidator();
-        return passwordMatchesValidator.isValid(userRegistrationDto, constraintValidatorContext);
+        return passwordMatchesValidator.isValid(userDto, constraintValidatorContext);
     }
 }

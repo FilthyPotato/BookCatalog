@@ -14,7 +14,7 @@ import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertThat;
 
 
-public class UserRegistrationDtoValidationTests {
+public class UserDtoValidationTests {
 
     @Test
     public void usernameHasNotEmptyAnnotation() throws NoSuchFieldException {
@@ -54,7 +54,7 @@ public class UserRegistrationDtoValidationTests {
 
     @Test
     public void userRegistrationDtoHasPasswordMatchesAnnotation(){
-        assertThat(UserRegistrationDto.class.getAnnotation(PasswordMatches.class), notNullValue());
+        assertThat(UserDto.class.getAnnotation(PasswordMatches.class), notNullValue());
     }
 
     private <T extends Annotation> void hasAnnotation(String fieldName, Class<T> annotationClass) throws NoSuchFieldException {
@@ -63,7 +63,7 @@ public class UserRegistrationDtoValidationTests {
     }
 
     private <T extends Annotation> Annotation getAnnotation(String fieldName, Class<T> annotationClass) throws NoSuchFieldException {
-        Field field = UserRegistrationDto.class.getDeclaredField(fieldName);
+        Field field = UserDto.class.getDeclaredField(fieldName);
         return field.getAnnotation(annotationClass);
     }
 

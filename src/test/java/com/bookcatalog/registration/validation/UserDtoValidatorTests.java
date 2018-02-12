@@ -1,7 +1,7 @@
 package com.bookcatalog.registration.validation;
 
 import com.bookcatalog.registration.UserService;
-import com.bookcatalog.registration.model.UserRegistrationDto;
+import com.bookcatalog.registration.model.UserDto;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,12 +14,12 @@ import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
-public class UserRegistrationDtoValidatorTests { 
+public class UserDtoValidatorTests {
     private UserRegistrationDtoValidator userRegistrationDtoValidator;
     @Mock
     private UserService userService;
     @Mock
-    private UserRegistrationDto userRegistrationDto;
+    private UserDto userDto;
     @Before
     public void setUp() {
         userRegistrationDtoValidator = new UserRegistrationDtoValidator(userService);
@@ -28,10 +28,10 @@ public class UserRegistrationDtoValidatorTests {
     @Test
     public void whenUsernameExistsThenFieldErrorIsSet() {
         when(userService.usernameExists("test")).thenReturn(true);
-        when(userRegistrationDto.getUsername()).thenReturn("test");
-        Errors errors = new BeanPropertyBindingResult(userRegistrationDto, "userRegistrationDto");
+        when(userDto.getUsername()).thenReturn("test");
+        Errors errors = new BeanPropertyBindingResult(userDto, "userRegistrationDto");
 
-        userRegistrationDtoValidator.validate(userRegistrationDto, errors);
+        userRegistrationDtoValidator.validate(userDto, errors);
 
         assertTrue(errors.hasFieldErrors("username"));
     }
@@ -39,10 +39,10 @@ public class UserRegistrationDtoValidatorTests {
     @Test
     public void whenEmailExistsThenFieldErrorIsSet() {
         when(userService.emailExists("test")).thenReturn(true);
-        when(userRegistrationDto.getEmail()).thenReturn("test");
-        Errors errors = new BeanPropertyBindingResult(userRegistrationDto, "userRegistrationDto");
+        when(userDto.getEmail()).thenReturn("test");
+        Errors errors = new BeanPropertyBindingResult(userDto, "userRegistrationDto");
 
-        userRegistrationDtoValidator.validate(userRegistrationDto, errors);
+        userRegistrationDtoValidator.validate(userDto, errors);
 
         assertTrue(errors.hasFieldErrors("email"));
     }

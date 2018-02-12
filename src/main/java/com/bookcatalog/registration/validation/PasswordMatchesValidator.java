@@ -1,19 +1,19 @@
 package com.bookcatalog.registration.validation;
 
-import com.bookcatalog.registration.model.UserRegistrationDto;
+import com.bookcatalog.registration.model.UserDto;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
 public class PasswordMatchesValidator
-        implements ConstraintValidator<PasswordMatches, UserRegistrationDto> {
+        implements ConstraintValidator<PasswordMatches, UserDto> {
 
     @Override
     public void initialize(PasswordMatches constraintAnnotation) {
     }
 
     @Override
-    public boolean isValid(UserRegistrationDto userRegistrationDto, ConstraintValidatorContext context) {
-        return userRegistrationDto.getPassword().equals(userRegistrationDto.getConfirmPassword());
+    public boolean isValid(UserDto userDto, ConstraintValidatorContext context) {
+        return userDto.getPassword().equals(userDto.getConfirmPassword());
     }
 }
