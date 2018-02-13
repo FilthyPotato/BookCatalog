@@ -1,6 +1,5 @@
 package com.bookcatalog.registration;
 
-import com.bookcatalog.registration.ActivationLinkMaker;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,13 +24,13 @@ public class ActivationLinkMakerTests {
     public void activationLinkWithEmptyContextNameIsCorrect(){
         String contextName = "";
         String link = activationLinkMaker.createActivationLink(host, contextName, token);
-        assertThat(link, is(String.format("http://%s/confirmRegistration?token=%s", host, token)));
+        assertThat(link, is(String.format("http://%s/registration?token=%s", host, token)));
     }
 
     @Test
     public void activationLinkWithNonEmptyContextNameIsCorrect(){
         String contextName = "/app";
         String link = activationLinkMaker.createActivationLink(host, contextName, token);
-        assertThat(link, is(String.format("http://%s/app/confirmRegistration?token=%s", host, token)));
+        assertThat(link, is(String.format("http://%s/app/registration?token=%s", host, token)));
     }
 }

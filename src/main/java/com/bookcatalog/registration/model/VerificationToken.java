@@ -20,11 +20,15 @@ public class VerificationToken {
     private LocalDateTime expiryDate;
     @Transient
     @Getter(AccessLevel.NONE)
-    private final Clock clock;
+    private Clock clock;
 
     @OneToOne
     @JoinColumn(nullable = false, name = "user_id")
     private User user;
+
+    public VerificationToken() {
+        this(Clock.systemDefaultZone());
+    }
 
     public VerificationToken(User user, String token) {
         this(Clock.systemDefaultZone());

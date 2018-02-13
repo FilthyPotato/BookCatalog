@@ -1,5 +1,6 @@
 package com.bookcatalog.registration.controllers;
 
+import com.bookcatalog.registration.AccountActivationService;
 import com.bookcatalog.registration.RegistrationMailSender;
 import com.bookcatalog.registration.UserRegistrationService;
 import com.bookcatalog.registration.model.User;
@@ -28,6 +29,8 @@ public class RegistrationControllerTests {
     private UserRegistrationDtoValidator userRegistrationDtoValidator;
     @Mock
     private RegistrationMailSender registrationMailSender;
+    @Mock
+    private AccountActivationService accountActivationService;
     @InjectMocks
     private RegistrationController registrationController;
     @Mock
@@ -53,7 +56,7 @@ public class RegistrationControllerTests {
     }
 
     @Test
-    public void registerRegistersNewAccount(){
+    public void postRegisterRegistersNewAccount(){
         when(bindingResult.hasErrors()).thenReturn(false);
 
         registrationController.register(userDto, bindingResult, webRequest);
@@ -62,12 +65,21 @@ public class RegistrationControllerTests {
     }
 
     @Test
-    public void registerSendsActivationMail() {
+    public void postRegisterSendsActivationMail() {
         when(bindingResult.hasErrors()).thenReturn(false);
         when(webRequest.getContextPath()).thenReturn(notRelevant);
         when(userRegistrationService.registerNewUserAccount(userDto)).thenReturn(user);
         registrationController.register(userDto, bindingResult, webRequest);
 
         verify(registrationMailSender).sendRegistrationMail(eq(user), Matchers.any(String.class), eq(notRelevant));
+    }
+
+    @Test
+    public void getRegisterActivatesAccount() {
+        String token = "";
+
+        registrationController.register(token);
+
+        verify(accountActivationService).activateAccount(token);
     }
 }
