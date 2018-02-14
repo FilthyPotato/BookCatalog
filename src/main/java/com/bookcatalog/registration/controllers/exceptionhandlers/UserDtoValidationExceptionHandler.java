@@ -1,5 +1,6 @@
 package com.bookcatalog.registration.controllers.exceptionhandlers;
 
+import com.bookcatalog.registration.controllers.RegistrationController;
 import com.bookcatalog.registration.model.ValidationErrorDto;
 import com.bookcatalog.registration.validation.FieldError;
 import com.bookcatalog.registration.validation.exceptions.ValidationException;
@@ -14,7 +15,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 import java.util.Arrays;
 import java.util.List;
 
-@RestControllerAdvice
+@RestControllerAdvice(basePackageClasses = RegistrationController.class)
 public class UserDtoValidationExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler({ValidationException.class})
