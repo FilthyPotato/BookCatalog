@@ -7,10 +7,10 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
 @Component
-public class UserRegistrationDtoValidator implements Validator {
+public class UserDtoValidator implements Validator {
     private UserService userService;
 
-    public UserRegistrationDtoValidator(UserService userService) {
+    public UserDtoValidator(UserService userService) {
         this.userService = userService;
     }
 

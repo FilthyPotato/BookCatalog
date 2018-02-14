@@ -5,7 +5,7 @@ import com.bookcatalog.registration.RegistrationMailSender;
 import com.bookcatalog.registration.UserRegistrationService;
 import com.bookcatalog.registration.model.User;
 import com.bookcatalog.registration.model.UserDto;
-import com.bookcatalog.registration.validation.UserRegistrationDtoValidator;
+import com.bookcatalog.registration.validation.UserDtoValidator;
 import com.bookcatalog.registration.validation.exceptions.ValidationException;
 import org.junit.Before;
 import org.junit.Test;
@@ -26,7 +26,7 @@ public class RegistrationControllerTests {
     @Mock
     private UserRegistrationService userRegistrationService;
     @Mock
-    private UserRegistrationDtoValidator userRegistrationDtoValidator;
+    private UserDtoValidator userDtoValidator;
     @Mock
     private RegistrationMailSender registrationMailSender;
     @Mock

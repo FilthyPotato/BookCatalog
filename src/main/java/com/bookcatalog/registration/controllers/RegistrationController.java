@@ -5,7 +5,7 @@ import com.bookcatalog.registration.RegistrationMailSender;
 import com.bookcatalog.registration.UserRegistrationService;
 import com.bookcatalog.registration.model.User;
 import com.bookcatalog.registration.model.UserDto;
-import com.bookcatalog.registration.validation.UserRegistrationDtoValidator;
+import com.bookcatalog.registration.validation.UserDtoValidator;
 import com.bookcatalog.registration.validation.exceptions.ValidationException;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
@@ -19,21 +19,21 @@ import javax.validation.Valid;
 public class RegistrationController {
     private UserRegistrationService userRegistrationService;
     private RegistrationMailSender registrationMailSender;
-    private UserRegistrationDtoValidator userRegistrationDtoValidator;
+    private UserDtoValidator userDtoValidator;
 
     private AccountActivationService accountActivationService;
 
     public RegistrationController(UserRegistrationService userRegistrationService, RegistrationMailSender registrationMailSender,
-                                  UserRegistrationDtoValidator userRegistrationDtoValidator, AccountActivationService accountActivationService) {
+                                  UserDtoValidator userDtoValidator, AccountActivationService accountActivationService) {
         this.userRegistrationService = userRegistrationService;
         this.registrationMailSender = registrationMailSender;
-        this.userRegistrationDtoValidator = userRegistrationDtoValidator;
+        this.userDtoValidator = userDtoValidator;
         this.accountActivationService = accountActivationService;
     }
 
     @InitBinder
     protected void initBinder(final WebDataBinder binder) {
-        binder.addValidators(userRegistrationDtoValidator);
+        binder.addValidators(userDtoValidator);
     }
 
     @PostMapping

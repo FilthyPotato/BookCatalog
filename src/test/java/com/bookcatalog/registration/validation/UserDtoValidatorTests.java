@@ -15,14 +15,14 @@ import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class UserDtoValidatorTests {
-    private UserRegistrationDtoValidator userRegistrationDtoValidator;
+    private UserDtoValidator userDtoValidator;
     @Mock
     private UserService userService;
     @Mock
     private UserDto userDto;
     @Before
     public void setUp() {
-        userRegistrationDtoValidator = new UserRegistrationDtoValidator(userService);
+        userDtoValidator = new UserDtoValidator(userService);
     }
 
     @Test
@@ -31,7 +31,7 @@ public class UserDtoValidatorTests {
         when(userDto.getUsername()).thenReturn("test");
         Errors errors = new BeanPropertyBindingResult(userDto, "userRegistrationDto");
 
-        userRegistrationDtoValidator.validate(userDto, errors);
+        userDtoValidator.validate(userDto, errors);
 
         assertTrue(errors.hasFieldErrors("username"));
     }
@@ -42,7 +42,7 @@ public class UserDtoValidatorTests {
         when(userDto.getEmail()).thenReturn("test");
         Errors errors = new BeanPropertyBindingResult(userDto, "userRegistrationDto");
 
-        userRegistrationDtoValidator.validate(userDto, errors);
+        userDtoValidator.validate(userDto, errors);
 
         assertTrue(errors.hasFieldErrors("email"));
     }
