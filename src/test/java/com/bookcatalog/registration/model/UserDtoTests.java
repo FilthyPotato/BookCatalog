@@ -2,73 +2,56 @@ package com.bookcatalog.registration.model;
 
 import com.bookcatalog.registration.validation.EmailNoIntranet;
 import com.bookcatalog.registration.validation.PasswordMatches;
-import org.hibernate.validator.constraints.NotEmpty;
 import org.junit.Test;
 
 import javax.validation.constraints.Size;
 import java.lang.annotation.Annotation;
-import java.lang.reflect.Field;
 
+import static com.bookcatalog.AnnotationUtils.*;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertThat;
 
-
-public class UserDtoValidationTests {
+public class UserDtoTests {
 
     @Test
     public void usernameHasNotEmptyAnnotation() throws NoSuchFieldException {
-        hasNotEmptyAnnotation("username");
+        hasNotEmptyAnnotation(UserDto.class,"username");
     }
 
     @Test
     public void passwordHasNotEmptyAnnotation() throws NoSuchFieldException {
-        hasNotEmptyAnnotation("password");
+        hasNotEmptyAnnotation(UserDto.class,"password");
     }
 
     @Test
     public void confirmPasswordHasNotEmptyAnnotation() throws NoSuchFieldException {
-        hasNotEmptyAnnotation("confirmPassword");
+        hasNotEmptyAnnotation(UserDto.class,"confirmPassword");
     }
 
     @Test
     public void emailHasNotEmptyAnnotation() throws NoSuchFieldException {
-        hasNotEmptyAnnotation("email");
+        hasNotEmptyAnnotation(UserDto.class,"email");
     }
 
     @Test
     public void emailHasEmailNoIntranetAnnotation() throws NoSuchFieldException {
-        hasAnnotation("email", EmailNoIntranet.class);
+        hasAnnotation(UserDto.class,"email", EmailNoIntranet.class);
     }
 
     @Test
     public void usernameHasSizeAnnotation() throws NoSuchFieldException {
-        hasAnnotation("username", Size.class);
+        hasAnnotation(UserDto.class,"username", Size.class);
     }
 
     @Test
     public void usernameSizeIsMin2() throws NoSuchFieldException {
-        Annotation size = getAnnotation("username", Size.class);
+        Annotation size = getAnnotation(UserDto.class,"username", Size.class);
         assertThat(((Size) size).min(), is(2));
     }
 
     @Test
-    public void userRegistrationDtoHasPasswordMatchesAnnotation(){
+    public void userRegistrationDtoHasPasswordMatchesAnnotation() {
         assertThat(UserDto.class.getAnnotation(PasswordMatches.class), notNullValue());
     }
-
-    private <T extends Annotation> void hasAnnotation(String fieldName, Class<T> annotationClass) throws NoSuchFieldException {
-        Annotation annotation = getAnnotation(fieldName, annotationClass);
-        assertThat(annotation, notNullValue());
-    }
-
-    private <T extends Annotation> Annotation getAnnotation(String fieldName, Class<T> annotationClass) throws NoSuchFieldException {
-        Field field = UserDto.class.getDeclaredField(fieldName);
-        return field.getAnnotation(annotationClass);
-    }
-
-    private void hasNotEmptyAnnotation(String fieldName) throws NoSuchFieldException {
-        hasAnnotation(fieldName, NotEmpty.class);
-    }
-
 }
