@@ -1,17 +1,18 @@
-package com.bookcatalog.registration.controllers.exceptionhandlers; 
+package com.bookcatalog.registration.controllers.exceptionhandlers;
 
-import com.bookcatalog.registration.model.ValidationErrorDto;
-import com.bookcatalog.registration.validation.FieldError;
-import org.junit.Test;
+import com.bookcatalog.validation.FieldError;
+import com.bookcatalog.validation.ValidationErrorDto;
 import org.junit.Before;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.hasItems;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)

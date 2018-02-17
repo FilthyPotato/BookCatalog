@@ -1,6 +1,5 @@
-package com.bookcatalog.registration.model;
+package com.bookcatalog.validation;
 
-import com.bookcatalog.registration.validation.FieldError;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 

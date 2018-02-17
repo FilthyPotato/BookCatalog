@@ -1,9 +1,9 @@
 package com.bookcatalog.registration.controllers.exceptionhandlers;
 
 import com.bookcatalog.registration.model.UserDto;
-import com.bookcatalog.registration.model.ValidationErrorDto;
-import com.bookcatalog.registration.validation.FieldError;
 import com.bookcatalog.registration.validation.exceptions.ValidationException;
+import com.bookcatalog.validation.FieldError;
+import com.bookcatalog.validation.ValidationErrorDto;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.http.HttpStatus;

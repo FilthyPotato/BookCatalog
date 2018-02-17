@@ -1,4 +1,4 @@
-package com.bookcatalog.registration.validation;
+package com.bookcatalog.validation;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;

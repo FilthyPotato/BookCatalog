@@ -1,9 +1,10 @@
 package com.bookcatalog.registration.controllers.exceptionhandlers;
 
+import com.bookcatalog.ValidationUtils;
 import com.bookcatalog.registration.controllers.RegistrationController;
-import com.bookcatalog.registration.model.ValidationErrorDto;
-import com.bookcatalog.registration.validation.FieldError;
 import com.bookcatalog.registration.validation.exceptions.ValidationException;
+import com.bookcatalog.validation.FieldError;
+import com.bookcatalog.validation.ValidationErrorDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -21,11 +22,9 @@ public class UserDtoValidationExceptionHandler extends ResponseEntityExceptionHa
     @ExceptionHandler({ValidationException.class})
     public ResponseEntity<ValidationErrorDto> handle(ValidationException ex) {
         BindingResult bindingResult = ex.getBindingResult();
-        List<org.springframework.validation.FieldError> fieldErrors = bindingResult.getFieldErrors();
-        List<ObjectError> objectErrors = bindingResult.getGlobalErrors();
 
-        ValidationErrorDto validationErrorDto = new ValidationErrorDto();
-        fieldErrors.forEach(f -> validationErrorDto.addFieldError(new FieldError(f.getField(), f.getDefaultMessage())));
+        ValidationErrorDto validationErrorDto = ValidationUtils.buildFieldErrors(bindingResult);
+        List<ObjectError> objectErrors = bindingResult.getGlobalErrors();
         objectErrors.forEach(o -> {
             if (Arrays.asList(o.getCodes()).contains("PasswordMatches")) {
                 validationErrorDto.addFieldError(new FieldError("password", o.getDefaultMessage()));

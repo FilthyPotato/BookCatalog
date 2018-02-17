@@ -1,9 +1,9 @@
 package com.bookcatalog.registration.controllers.exceptionhandlers;
 
-import com.bookcatalog.registration.model.ValidationErrorDto;
-import com.bookcatalog.registration.validation.FieldError;
 import com.bookcatalog.registration.validation.exceptions.InvalidTokenException;
 import com.bookcatalog.registration.validation.exceptions.TokenExpiredException;
+import com.bookcatalog.validation.FieldError;
+import com.bookcatalog.validation.ValidationErrorDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
