@@ -6,7 +6,7 @@ import com.bookcatalog.registration.UserRegistrationService;
 import com.bookcatalog.registration.model.User;
 import com.bookcatalog.registration.model.UserDto;
 import com.bookcatalog.registration.validation.UserDtoValidator;
-import com.bookcatalog.registration.validation.exceptions.ValidationException;
+import com.bookcatalog.validation.ValidationException;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -1,4 +1,4 @@
-package com.bookcatalog.registration.validation.exceptions;
+package com.bookcatalog.validation;
 
 import lombok.Getter;
 import org.springframework.validation.BindingResult;
