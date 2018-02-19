@@ -18,17 +18,22 @@ public class UserDtoValidatorTests {
     private UserDtoValidator userDtoValidator;
     @Mock
     private UserService userService;
-    @Mock
+
     private UserDto userDto;
     @Before
     public void setUp() {
         userDtoValidator = new UserDtoValidator(userService);
+
+        userDto = new UserDto();
+        userDto.setUsername("test");
+        userDto.setEmail("test@test.com");
+        userDto.setPassword("test");
+        userDto.setConfirmPassword("test");
     }
 
     @Test
     public void whenUsernameExistsThenFieldErrorIsSet() {
         when(userService.usernameExists("test")).thenReturn(true);
-        when(userDto.getUsername()).thenReturn("test");
         Errors errors = new BeanPropertyBindingResult(userDto, "userDto");
 
         userDtoValidator.validate(userDto, errors);
@@ -38,8 +43,7 @@ public class UserDtoValidatorTests {
 
     @Test
     public void whenEmailExistsThenFieldErrorIsSet() {
-        when(userService.emailExists("test")).thenReturn(true);
-        when(userDto.getEmail()).thenReturn("test");
+        when(userService.emailExists("test@test.com")).thenReturn(true);
         Errors errors = new BeanPropertyBindingResult(userDto, "userDto");
 
         userDtoValidator.validate(userDto, errors);
@@ -49,7 +53,6 @@ public class UserDtoValidatorTests {
 
     @Test
     public void whenPasswordsDoNotMatchThenFieldErrorIsSet() {
-        UserDto userDto = new UserDto();
         userDto.setPassword("password");
         userDto.setConfirmPassword("wrongPassword");
         Errors errors = new BeanPropertyBindingResult(userDto, "userDto");
