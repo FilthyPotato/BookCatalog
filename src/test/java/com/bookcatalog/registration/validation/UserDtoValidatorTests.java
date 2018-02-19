@@ -29,7 +29,7 @@ public class UserDtoValidatorTests {
     public void whenUsernameExistsThenFieldErrorIsSet() {
         when(userService.usernameExists("test")).thenReturn(true);
         when(userDto.getUsername()).thenReturn("test");
-        Errors errors = new BeanPropertyBindingResult(userDto, "userRegistrationDto");
+        Errors errors = new BeanPropertyBindingResult(userDto, "userDto");
 
         userDtoValidator.validate(userDto, errors);
 
@@ -40,10 +40,23 @@ public class UserDtoValidatorTests {
     public void whenEmailExistsThenFieldErrorIsSet() {
         when(userService.emailExists("test")).thenReturn(true);
         when(userDto.getEmail()).thenReturn("test");
-        Errors errors = new BeanPropertyBindingResult(userDto, "userRegistrationDto");
+        Errors errors = new BeanPropertyBindingResult(userDto, "userDto");
 
         userDtoValidator.validate(userDto, errors);
 
         assertTrue(errors.hasFieldErrors("email"));
+    }
+
+    @Test
+    public void whenPasswordsDoNotMatchThenFieldErrorIsSet() {
+        UserDto userDto = new UserDto();
+        userDto.setPassword("password");
+        userDto.setConfirmPassword("wrongPassword");
+        Errors errors = new BeanPropertyBindingResult(userDto, "userDto");
+
+        userDtoValidator.validate(userDto, errors);
+
+        assertTrue(errors.hasFieldErrors("password"));
+        assertTrue(errors.hasFieldErrors("confirmPassword"));
     }
 }

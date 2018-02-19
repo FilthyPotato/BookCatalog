@@ -29,5 +29,10 @@ public class UserDtoValidator implements Validator {
         if (userService.emailExists(dto.getEmail())) {
             errors.rejectValue("email","", "This email is already taken.");
         }
+
+        if (!dto.getPassword().equals(dto.getConfirmPassword())) {
+            errors.rejectValue("password", "", "Passwords don't match");
+            errors.rejectValue("confirmPassword", "", "Passwords don't match");
+        }
     }
 }
