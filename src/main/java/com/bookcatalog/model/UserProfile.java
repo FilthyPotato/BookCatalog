@@ -1,0 +1,45 @@
+package com.bookcatalog.model;
+
+import com.bookcatalog.registration.model.User;
+import lombok.Data;
+
+import javax.persistence.*;
+import javax.swing.text.html.Option;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.function.Consumer;
+import java.util.function.Predicate;
+
+@Entity
+@Data
+public class UserProfile {
+
+    @Id
+    @GeneratedValue
+    private Long id;
+    @OneToOne(mappedBy = "userProfile")
+    private User user;
+    private String email;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_profile_id", referencedColumnName = "id")
+    private List<Shelf> shelves = new ArrayList<>();
+
+    public void addShelf(Shelf shelf) {
+        shelves.add(shelf);
+    }
+
+    public Optional<Shelf> getShelf(Long id) {
+        return getShelf(s -> s.getId().equals(id));
+    }
+
+    public Optional<Shelf> getShelf(String name) {
+        return getShelf(s -> s.getName().equals(name));
+    }
+
+    private Optional<Shelf> getShelf(Predicate<Shelf> predicate) {
+        return shelves.stream()
+                .filter(predicate)
+                .findFirst();
+    }
+}

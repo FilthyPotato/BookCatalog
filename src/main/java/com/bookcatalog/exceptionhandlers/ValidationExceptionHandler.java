@@ -1,6 +1,7 @@
 package com.bookcatalog.exceptionhandlers;
 
 import com.bookcatalog.ValidationUtils;
+import com.bookcatalog.api.BookController;
 import com.bookcatalog.api.ShelfController;
 import com.bookcatalog.registration.controllers.RegistrationController;
 import com.bookcatalog.validation.ValidationErrorDto;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-@ControllerAdvice(basePackageClasses = {ShelfController.class, RegistrationController.class})
+@ControllerAdvice
 public class ValidationExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(ValidationException.class)

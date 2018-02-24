@@ -1,5 +1,6 @@
 package com.bookcatalog.registration;
 
+import com.bookcatalog.model.UserProfile;
 import com.bookcatalog.registration.model.User;
 import com.bookcatalog.registration.model.UserDto;
 import com.bookcatalog.registration.repositories.RoleRepository;
@@ -30,6 +31,7 @@ public class UserRegistrationService {
         }
 
         User user = new User();
+        user.setUserProfile(new UserProfile());
         user.setUsername(userDto.getUsername());
         user.setEmail(userDto.getEmail());
         user.setPassword(userDto.getPassword());

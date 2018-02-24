@@ -1,8 +1,12 @@
 INSERT INTO ROLE(ID, NAME) VALUES(1, 'ROLE_USER');
 
-INSERT INTO USER(ID, USERNAME, EMAIL, PASSWORD, ENABLED)
-VALUES  (1, 'test1', 'test1@test.com', 'test1', true),
-        (2, 'test2', 'test2@test.com', 'test2', true);
+INSERT INTO USER_PROFILE(ID, EMAIL)
+VALUES  (1, 'test1@test.com'),
+        (2, 'test2@test.com');
+
+INSERT INTO USER(ID, USERNAME, EMAIL, PASSWORD, ENABLED, USER_PROFILE_ID)
+VALUES  (1, 'test1', 'test1@test.com', 'test1', true, 1),
+        (2, 'test2', 'test2@test.com', 'test2', true, 2);
 
 INSERT INTO USERS_ROLES(USER_ID, ROLE_ID)
 VALUES  (1, 1),
@@ -17,10 +21,6 @@ INSERT INTO GENRE(ID, NAME)
 VALUES  (1, 'Genre1'),
         (2, 'Genre2'),
         (3, 'Genre3');
-
-INSERT INTO USER_PROFILE(ID, EMAIL)
-VALUES  (1, 'test1@test.com'),
-        (2, 'test2@test.com');
 
 INSERT INTO SHELF(ID, NAME, USER_PROFILE_ID)
 VALUES  (1, 'Shelf1', 1),

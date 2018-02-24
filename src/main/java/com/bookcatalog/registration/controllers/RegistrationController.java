@@ -37,7 +37,7 @@ public class RegistrationController {
     }
 
     @PostMapping
-    public void register(@Valid UserDto userDto, BindingResult bindingResult, WebRequest webRequest) {
+    public void register(@RequestBody @Valid UserDto userDto, BindingResult bindingResult, WebRequest webRequest) {
         if (bindingResult.hasErrors()) {
             throw new ValidationException(bindingResult);
         }
