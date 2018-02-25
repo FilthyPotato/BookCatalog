@@ -70,26 +70,16 @@ public class BookFacade {
         return new ArrayList<>();
     }
 
-    //TODO: not tested (+ the method below)
     public void replaceBook(String email, Long bookId, BookDto bookDto) {
         if (bookBelongsToUser(bookId, email)) {
             bookUpdater.replaceBook(bookId, bookDto);
         }
     }
 
-    //TODO: not tested (+ all the private methods are also not tested. They should be tested via this public method.)
     public void updateBook(String email, Long bookId, BookDto bookDto) {
         if (bookBelongsToUser(bookId, email)) {
             bookUpdater.updateBook(bookId, bookDto);
         }
-    }
-
-    public Long addBook(String email, NewBookDto newBookDto) {
-        UserProfile userProfile = userProfileService.findByEmail(email);
-        List<Long> shelfIds = newBookDto.getShelfIds();
-        shelfIds.forEach(id -> throwIfShelfDoesNotBelongToUser(id, userProfile));
-
-        return bookAdder.addBook(newBookDto);
     }
 
     public Long addBookToShelf(String email, Long shelfId, BookDto bookDto) {
@@ -98,6 +88,15 @@ public class BookFacade {
         }
 
         return null;
+    }
+
+    public Long addBook(String email, NewBookDto newBookDto) {
+        //if(allShelvesBelongToUser())
+        UserProfile userProfile = userProfileService.findByEmail(email);
+        List<Long> shelfIds = newBookDto.getShelfIds();
+        shelfIds.forEach(id -> throwIfShelfDoesNotBelongToUser(id, userProfile));
+
+        return bookAdder.addBook(newBookDto);
     }
 
     private void throwIfShelfDoesNotBelongToUser(Long shelfId, UserProfile userProfile) {

@@ -62,4 +62,10 @@ public class UserProfile {
                 .anyMatch(shelf -> shelf.getId().equals(shelfId));
     }
 
+    public Optional<Book> getBook(Long bookId) {
+        return shelves.stream()
+                .flatMap(s -> s.getBooks().stream())
+                .filter(b -> b.getId().equals(bookId))
+                .findFirst();
+    }
 }

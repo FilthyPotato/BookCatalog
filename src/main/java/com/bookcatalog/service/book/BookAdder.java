@@ -31,8 +31,6 @@ class BookAdder {
         return book.getId();
     }
 
-    //TODO: should return the book added
-    //TODO: test if only one book has been created
     public Long addBook(NewBookDto dto) {
         Book savedBook = createBookFromDtoAndSave(dto);
 

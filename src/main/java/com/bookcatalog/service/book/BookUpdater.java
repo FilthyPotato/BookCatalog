@@ -16,7 +16,6 @@ class BookUpdater {
         this.bookFieldsUpdater = bookFieldsUpdater;
     }
 
-    //TODO: not tested (+ the method below)
     public void replaceBook(Long bookId, BookDto bookDto) {
         Book newBook = bookService.createFromDto(bookDto);
         newBook.setId(bookId);
