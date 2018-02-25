@@ -15,7 +15,7 @@ class BookRemover {
     public BookRemover(ShelfService shelfService) {
         this.shelfService = shelfService;
     }
-    
+
     public void removeBookFromShelf(Long bookId, Long shelfId) {
         Shelf shelf = shelfService.findOne(shelfId);
         if (shelf != null) {
