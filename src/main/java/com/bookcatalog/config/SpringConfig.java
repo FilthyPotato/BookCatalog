@@ -12,6 +12,7 @@ import org.modelmapper.TypeMap;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Configuration
 @PropertySource("classpath:gmail.properties")
@@ -19,6 +20,11 @@ public class SpringConfig {
     @Bean
     public UUIDGenerator uuidGenerator(){
         return new UUIDGeneratorImpl();
+    }
+
+    @Bean
+    public BCryptPasswordEncoder passwordEncoder(){
+        return new BCryptPasswordEncoder();
     }
 
     @Bean

@@ -6,7 +6,7 @@ import com.bookcatalog.registration.model.UserDto;
 import com.bookcatalog.registration.repositories.RoleRepository;
 import com.bookcatalog.registration.validation.exceptions.EmailExistsException;
 import com.bookcatalog.registration.validation.exceptions.UsernameExistsException;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
@@ -15,11 +15,12 @@ import java.util.Arrays;
 public class UserRegistrationService {
     private UserService userService;
     private RoleRepository roleRepository;
+    private BCryptPasswordEncoder passwordEncoder;
 
-    @Autowired
-    public UserRegistrationService(UserService userService, RoleRepository roleRepository) {
+    public UserRegistrationService(UserService userService, RoleRepository roleRepository, BCryptPasswordEncoder passwordEncoder) {
         this.userService = userService;
         this.roleRepository = roleRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public User registerNewUserAccount(UserDto userDto) throws EmailExistsException, UsernameExistsException {
@@ -34,7 +35,7 @@ public class UserRegistrationService {
         user.setUserProfile(new UserProfile());
         user.setUsername(userDto.getUsername());
         user.setEmail(userDto.getEmail());
-        user.setPassword(userDto.getPassword());
+        user.setPassword(passwordEncoder.encode(userDto.getPassword()));
         user.setEnabled(false);
         user.setRoles(Arrays.asList(roleRepository.findByName("ROLE_USER")));
         userService.save(user);

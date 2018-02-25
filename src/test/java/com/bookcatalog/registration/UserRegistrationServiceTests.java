@@ -13,12 +13,14 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.Collection;
 
 import static org.hamcrest.CoreMatchers.hasItems;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class UserRegistrationServiceTests {
@@ -31,23 +33,27 @@ public class UserRegistrationServiceTests {
     private User newlyCreatedUser;
     @Mock
     private Role expectedRole;
+    @Mock
+    private BCryptPasswordEncoder passwordEncoder;
 
     @Before
     public void setUp() {
-        userRegistrationService = new UserRegistrationService(new UserService(userRepository), roleRepository);
+        userRegistrationService = new UserRegistrationService(new UserService(userRepository), roleRepository, passwordEncoder);
 
         userDto = new UserDto();
         userDto.setUsername("user1");
         userDto.setPassword("password1");
         userDto.setEmail("test@test.com");
+
+        when(passwordEncoder.encode(userDto.getPassword())).thenReturn("encoded");
     }
 
     @Test
     public void registerNewUserAccountSetsAllFieldsFromDto() {
         User expectedUser = new User();
-        expectedUser.setUsername("user1");
-        expectedUser.setPassword("password1");
-        expectedUser.setEmail("test@test.com");
+        expectedUser.setUsername(userDto.getUsername());
+        expectedUser.setPassword(passwordEncoder.encode(userDto.getPassword()));
+        expectedUser.setEmail(userDto.getEmail());
 
         newlyCreatedUser = userRegistrationService.registerNewUserAccount(userDto);
 
@@ -72,7 +78,7 @@ public class UserRegistrationServiceTests {
 
     @Test
     public void userHasOnlyUserRoleWhenCreated() {
-        Mockito.when(roleRepository.findByName("ROLE_USER")).thenReturn(expectedRole);
+        when(roleRepository.findByName("ROLE_USER")).thenReturn(expectedRole);
         newlyCreatedUser = userRegistrationService.registerNewUserAccount(userDto);
 
         Collection<Role> roles = newlyCreatedUser.getRoles();
@@ -83,28 +89,28 @@ public class UserRegistrationServiceTests {
 
     @Test(expected = EmailExistsException.class)
     public void throwsEmailExistsExceptionWhenUserWithGivenEmailAlreadyExists() {
-        Mockito.when(userRepository.findByEmail("test@test.com")).thenReturn(new User());
+        when(userRepository.findByEmail("test@test.com")).thenReturn(new User());
 
         userRegistrationService.registerNewUserAccount(userDto);
     }
 
     @Test(expected = Test.None.class)
     public void doesNotThrowsEmailExistsExceptionIfUserDoesNotExistsYet() {
-        Mockito.when(userRepository.findByEmail("test@test.com")).thenReturn(null);
+        when(userRepository.findByEmail("test@test.com")).thenReturn(null);
 
         userRegistrationService.registerNewUserAccount(userDto);
     }
 
     @Test(expected = UsernameExistsException.class)
     public void throwsUsernameExistsExceptionWhenUserAlreadyExists() {
-        Mockito.when(userRepository.findByUsername("user1")).thenReturn(new User());
+        when(userRepository.findByUsername("user1")).thenReturn(new User());
 
         userRegistrationService.registerNewUserAccount(userDto);
     }
 
     @Test(expected = Test.None.class)
     public void doesNotThrowUsernameExistsExceptionWhenUserDoesNotExistYet() {
-        Mockito.when(userRepository.findByUsername("user1")).thenReturn(null);
+        when(userRepository.findByUsername("user1")).thenReturn(null);
 
         userRegistrationService.registerNewUserAccount(userDto);
     }

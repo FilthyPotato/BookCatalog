@@ -20,7 +20,7 @@ public class GmailMailSendingIntegrationTest {
     @Test(expected = Test.None.class)
     public void sendingEmailViaGmailWorks() {
         SimpleMailMessage mailMessage = new SimpleMailMessage();
-        mailMessage.setTo("reolgoddess@gmail.com");
+        mailMessage.setTo("springbookcatalog@gmail.com");
         mailMessage.setSubject("Spring GMAIL test");
         mailMessage.setText("Just testing if sending emails via Spring works.");
         mailService.send(mailMessage);

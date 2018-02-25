@@ -6,7 +6,7 @@ VALUES  (0, 'system'),
 
 INSERT INTO USER(ID, USERNAME, EMAIL, PASSWORD, ENABLED, USER_PROFILE_ID)
 VALUES  (0, 'system', 'system', '#G#$G#$G#$G#', true, 0),
-        (1, 'test1', 'test1@test.com', 'test1', true, 1);
+        (1, 'test1', 'test1@test.com', '$2a$04$wgKdz3gUS/qmmEHL6eelLe0cqqcXzntRuAJZjeMapT0U0pK7FJsr.', true, 1);
 
 INSERT INTO USERS_ROLES(USER_ID, ROLE_ID)
 VALUES  (1, 1);
