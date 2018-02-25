@@ -83,8 +83,8 @@ public class BookControllerIntegrationTests {
                 .content(json))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.title", is(dto.getTitle())))
-                .andExpect(jsonPath("$.shelfNames[0]", is("shelf1")))
-                .andExpect(jsonPath("$.shelfNames[1]", is("shelf2")));
+                .andExpect(jsonPath("$.shelfIds[0]", is(1)))
+                .andExpect(jsonPath("$.shelfIds[1]", is(2)));
     }
 
     @Test
@@ -100,7 +100,7 @@ public class BookControllerIntegrationTests {
                 .content(json))
                 .andExpect(status().isUnprocessableEntity())
                 .andExpect(jsonPath("$.fieldErrors", hasSize(1)))
-                .andExpect(jsonPath("$.fieldErrors[0].field", is("shelfNames")))
+                .andExpect(jsonPath("$.fieldErrors[0].field", is("shelfIds")))
                 .andExpect(jsonPath("$.fieldErrors[0].message", is("may not be empty")));
     }
 }

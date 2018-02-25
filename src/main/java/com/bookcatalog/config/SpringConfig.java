@@ -25,7 +25,7 @@ public class SpringConfig {
     public ModelMapper modelMapper(){
         ModelMapper modelMapper = new ModelMapper();
 
-        modelMapper.createTypeMap(BookDto.class, Book.class, "replace")
+        modelMapper.createTypeMap(BookDto.class, Book.class)
                 .addMappings(mapper -> mapper.skip(Book::setId));
 
         createUpdateMap(modelMapper, BookDto.class, Book.class)

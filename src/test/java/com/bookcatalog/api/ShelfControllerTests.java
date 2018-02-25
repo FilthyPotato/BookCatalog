@@ -1,6 +1,5 @@
 package com.bookcatalog.api;
 
-import com.bookcatalog.UserProfileService;
 import com.bookcatalog.dto.BookDto;
 import com.bookcatalog.dto.ShelfDto;
 import com.bookcatalog.service.book.BookFacade;
@@ -19,8 +18,6 @@ import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ShelfControllerTests {
-    @Mock
-    private UserProfileService userProfileService;
     @Mock
     private BookFacade bookFacade;
     @Mock
@@ -46,7 +43,7 @@ public class ShelfControllerTests {
 
         shelfController.addShelf(shelfDto, bindingResult, principal);
 
-        verify(userProfileService, times(1)).addShelf(principal.getName(), shelfDto);
+        verify(shelfFacade, times(1)).addShelf(principal.getName(), shelfDto);
     }
 
     @Test(expected = ValidationException.class)
@@ -60,7 +57,7 @@ public class ShelfControllerTests {
     public void deleteBookFromShelfRemovesBook() {
         shelfController.deleteBookFromShelf(1L, 1L, principal);
 
-        verify(userProfileService).removeBookFromShelf(principal.getName(), 1L, 1L);
+        verify(bookFacade).removeBookFromShelf(principal.getName(), 1L, 1L);
     }
 
     @Test(expected = ValidationException.class)
@@ -74,14 +71,14 @@ public class ShelfControllerTests {
     public void updateShelfUpdatesShelfName() {
         shelfController.updateShelf(shelfDto, bindingResult, 1L, principal);
 
-        verify(userProfileService).updateShelf(principal.getName(), 1L, shelfDto);
+        verify(shelfFacade).updateShelf(principal.getName(), 1L, shelfDto);
     }
 
     @Test
     public void addBookToShelf() {
         shelfController.addBookToShelf(bookDto, bindingResult, 1L, principal);
 
-        verify(userProfileService).addBookToShelf(principal.getName(), 1L, bookDto);
+        verify(bookFacade).addBookToShelf(principal.getName(), 1L, bookDto);
     }
 
     @Test(expected = ValidationException.class)

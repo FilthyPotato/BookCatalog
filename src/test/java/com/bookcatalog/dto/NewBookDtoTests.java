@@ -7,6 +7,6 @@ public class NewBookDtoTests {
 
     @Test
     public void shelfNamesHasNotEmptyAnnotation() throws NoSuchFieldException {
-        AnnotationUtils.hasNotEmptyAnnotation(NewBookDto.class, "shelfNames");
+        AnnotationUtils.hasNotEmptyAnnotation(NewBookDto.class, "shelfIds");
     }
 }

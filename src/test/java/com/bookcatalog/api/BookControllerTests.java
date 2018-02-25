@@ -1,7 +1,7 @@
 package com.bookcatalog.api;
 
-import com.bookcatalog.UserProfileService;
 import com.bookcatalog.dto.NewBookDto;
+import com.bookcatalog.service.book.BookFacade;
 import com.bookcatalog.validation.ValidationException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,7 +19,7 @@ import static org.mockito.Mockito.when;
 public class BookControllerTests {
 
     @Mock
-    private UserProfileService userProfileService;
+    private BookFacade bookFacade;
     @InjectMocks
     private BookController bookController;
     private Principal principal = () -> "test1@test.com";
@@ -31,15 +31,14 @@ public class BookControllerTests {
     public void deleteBookFromAllShelves() {
         bookController.deleteBookFromAllShelves(1L, principal);
 
-        verify(userProfileService).removeBookFromAllShelves(principal.getName(), 1L);
+        verify(bookFacade).removeBookFromAllUserShelves(1L, principal.getName());
     }
 
     @Test
     public void addBook() {
         bookController.addBook(newBookDto, bindingResult, principal);
 
-        verify(userProfileService).addBook(principal.getName(), newBookDto);
-
+        verify(bookFacade).addBook(principal.getName(), newBookDto);
     }
 
     @Test(expected = ValidationException.class)
