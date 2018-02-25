@@ -22,7 +22,15 @@ public class BookService {
     }
 
     public Book save(BookDto bookDto) {
-        Book book = bookDtoConverter.createFromDto(bookDto);
+        Book book = createFromDto(bookDto);
         return this.save(book);
+    }
+
+    public Book findOne(Long bookId) {
+        return bookRepository.findOne(bookId);
+    }
+
+    public Book createFromDto(BookDto bookDto) {
+        return bookDtoConverter.createFromDto(bookDto);
     }
 }

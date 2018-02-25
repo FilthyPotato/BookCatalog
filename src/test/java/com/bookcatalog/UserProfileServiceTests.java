@@ -17,10 +17,9 @@ import org.mockito.runners.MockitoJUnitRunner;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.hamcrest.Matchers.hasItem;
-import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -274,7 +273,7 @@ public class UserProfileServiceTests {
     public void addBookShouldBeAddedToEverySpecifiedShelf() {
         String email = "";
         NewBookDto dto = new NewBookDto();
-        dto.setShelfNames(Arrays.asList("shelf1", "shelf2"));
+        dto.setShelfIds(Arrays.asList(1L, 2L));
         Book book = mock(Book.class);
         UserProfile userProfile = UserProfileDataGenerator.generateData();
         when(bookService.save(any(Book.class))).thenReturn(book);

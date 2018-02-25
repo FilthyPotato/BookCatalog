@@ -1,15 +1,16 @@
 package com.bookcatalog.model;
 
 import com.bookcatalog.registration.model.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
-import javax.swing.text.html.Option;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.function.Consumer;
 import java.util.function.Predicate;
+
+import static java.util.stream.Collectors.toList;
 
 @Entity
 @Data
@@ -18,6 +19,7 @@ public class UserProfile {
     @Id
     @GeneratedValue
     private Long id;
+    @JsonIgnore
     @OneToOne(mappedBy = "userProfile")
     private User user;
     private String email;
@@ -42,4 +44,22 @@ public class UserProfile {
                 .filter(predicate)
                 .findFirst();
     }
+
+    public List<Book> getAllBooks() {
+        return shelves.stream()
+                .flatMap(s -> s.getBooks().stream())
+                .collect(toList());
+    }
+
+    public boolean hasBook(Long bookId) {
+        return shelves.stream()
+                .flatMap(s -> s.getBooks().stream())
+                .anyMatch(book -> book.getId().equals(bookId));
+    }
+
+    public boolean hasShelf(Long shelfId) {
+        return shelves.stream()
+                .anyMatch(shelf -> shelf.getId().equals(shelfId));
+    }
+
 }

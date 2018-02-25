@@ -9,5 +9,5 @@ import java.util.List;
 @Data
 public class NewBookDto extends BookDto {
     @NotEmpty
-    private List<String> shelfNames = new ArrayList<>();
+    private List<Long> shelfIds = new ArrayList<>();
 }

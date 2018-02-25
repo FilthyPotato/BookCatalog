@@ -197,8 +197,8 @@ public class UserProfileService {
         final Book book = bookService.save(bookDtoConverter.createFromDto(dto));
         UserProfile userProfile = findByEmail(email);
 
-        dto.getShelfNames().forEach(name -> {
-            Optional<Shelf> shelf = userProfile.getShelf(name);
+        dto.getShelfIds().forEach(id -> {
+            Optional<Shelf> shelf = userProfile.getShelf(id);
             shelf.ifPresent(s -> addBookToShelfAndUpdate(book, s));
         });
 

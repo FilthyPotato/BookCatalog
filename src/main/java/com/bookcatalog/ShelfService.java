@@ -23,17 +23,17 @@ public class ShelfService {
         return shelfRepository.save(shelf);
     }
 
-    public boolean shelfExists(String name) {
-        return findByName(name).isPresent();
-    }
-
     public Shelf save(ShelfDto shelfDto) {
-        Shelf shelf = shelfDtoConverter.createFromDto(shelfDto);
+        Shelf shelf = shelfDtoConverter.fromDto(shelfDto);
         return this.save(shelf);
     }
 
     public Optional<Shelf> findByName(String name) {
         return shelfRepository.findByName(name);
+    }
+
+    public Shelf findOne(Long shelfId) {
+        return shelfRepository.findOne(shelfId);
     }
 
 }

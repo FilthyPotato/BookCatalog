@@ -1,4 +1,4 @@
-package com.bookcatalog; 
+package com.bookcatalog;
 
 import com.bookcatalog.dto.ShelfDto;
 import com.bookcatalog.dto.ShelfDtoConverter;
@@ -10,8 +10,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -38,7 +38,7 @@ public class ShelfServiceTests {
     public void saveShelfDtoSavesShelfEntityToDatabase() {
         ShelfDto dto = mock(ShelfDto.class);
         Shelf expected = mock(Shelf.class);
-        when(shelfDtoConverter.createFromDto(dto)).thenReturn(expected);
+        when(shelfDtoConverter.fromDto(dto)).thenReturn(expected);
 
         shelfService.save(dto);
 
@@ -49,7 +49,7 @@ public class ShelfServiceTests {
     public void saveShelfDtoReturnsSavedEntity() {
         ShelfDto dto = mock(ShelfDto.class);
         Shelf expected = mock(Shelf.class);
-        when(shelfDtoConverter.createFromDto(dto)).thenReturn(expected);
+        when(shelfDtoConverter.fromDto(dto)).thenReturn(expected);
         when(shelfRepository.save(expected)).thenReturn(expected);
 
         Shelf result = shelfService.save(dto);

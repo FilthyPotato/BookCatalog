@@ -2,7 +2,6 @@ package com.bookcatalog.api;
 
 import com.bookcatalog.dto.NewBookDto;
 import com.bookcatalog.exceptionhandlers.ValidationExceptionHandler;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Before;
 import org.junit.Test;
@@ -20,12 +19,8 @@ import java.util.Arrays;
 
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
 
 @RunWith(SpringRunner.class)
@@ -79,7 +74,7 @@ public class BookControllerIntegrationTests {
     public void addBookNoErrors() throws Exception {
         NewBookDto dto = new NewBookDto();
         dto.setTitle("title");
-        dto.setShelfNames(Arrays.asList("shelf1", "shelf2"));
+        dto.setShelfIds(Arrays.asList(1L, 2L));
         String json = pojoUtils.toJson(dto);
 
         mockMvc.perform(post("/book")
@@ -96,7 +91,7 @@ public class BookControllerIntegrationTests {
     public void addBookWithErrors() throws Exception {
         NewBookDto dto = new NewBookDto();
         dto.setTitle("title");
-        dto.setShelfNames(null);
+        dto.setShelfIds(null);
         String json = pojoUtils.toJson(dto);
 
         mockMvc.perform(post("/book")

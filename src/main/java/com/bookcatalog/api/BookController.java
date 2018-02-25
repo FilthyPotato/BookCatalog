@@ -1,43 +1,40 @@
 package com.bookcatalog.api;
 
-import com.bookcatalog.UserProfileService;
 import com.bookcatalog.dto.BookDto;
 import com.bookcatalog.dto.NewBookDto;
 import com.bookcatalog.model.Book;
-import com.bookcatalog.validation.ValidationException;
+import com.bookcatalog.service.book.BookFacade;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import javax.xml.ws.Response;
 import java.security.Principal;
 import java.util.List;
 
 @RestController
 public class BookController {
 
-    private UserProfileService userProfileService;
+    private BookFacade bookFacade;
 
-    public BookController(UserProfileService userProfileService) {
-        this.userProfileService = userProfileService;
+    public BookController(BookFacade bookFacade) {
+        this.bookFacade = bookFacade;
     }
 
     @GetMapping("/books")
     public List<Book> allBooks(Principal principal) {
-        return userProfileService.findAllBooksDistinct(principal.getName());
+        return bookFacade.findAllBooksDistinct(principal.getName());
     }
 
     @GetMapping("/book/{id}")
     public Book oneBook(@PathVariable Long id, Principal principal) {
-        return userProfileService.findOneBook(principal.getName(), id);
+        return bookFacade.findOneBook(id, principal.getName());
     }
 
     @DeleteMapping("/book/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteBookFromAllShelves(@PathVariable Long id, Principal principal) {
-        userProfileService.removeBookFromAllShelves(principal.getName(), id);
+        bookFacade.removeBookFromAllUserShelves(id, principal.getName());
     }
 
     //TODO: not tested
@@ -45,7 +42,7 @@ public class BookController {
     public void updateBook(@RequestBody @Valid BookDto bookDto, BindingResult bindingResult, @PathVariable Long id, Principal principal) {
         ControllerUtils.throwValidationExceptionIfErrors(bindingResult);
 
-        userProfileService.updateBook(principal.getName(), id, bookDto);
+        bookFacade.updateBook(principal.getName(), id, bookDto);
     }
 
     //TODO: not tested
@@ -53,14 +50,15 @@ public class BookController {
     public void replaceBook(@RequestBody @Valid BookDto bookDto, BindingResult bindingResult, @PathVariable Long id, Principal principal) {
         ControllerUtils.throwValidationExceptionIfErrors(bindingResult);
 
-        userProfileService.replaceBook(principal.getName(), id, bookDto);
+        bookFacade.replaceBook(principal.getName(), id, bookDto);
     }
 
     @PostMapping("/book")
-    public ResponseEntity<BookDto> addBook(@RequestBody @Valid NewBookDto dto, BindingResult bindingResult, Principal principal){
+    public BookDto addBook(@RequestBody @Valid NewBookDto newBookDto, BindingResult bindingResult, Principal principal){
         ControllerUtils.throwValidationExceptionIfErrors(bindingResult);
 
-        BookDto result = userProfileService.addBook(principal.getName(), dto);
-        return ResponseEntity.ok(result);
+        Long newBookId = bookFacade.addBook(principal.getName(), newBookDto);
+        newBookDto.setId(newBookId);
+        return newBookDto;
     }
 }

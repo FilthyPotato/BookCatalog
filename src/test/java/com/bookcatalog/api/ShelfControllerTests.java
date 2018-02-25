@@ -3,16 +3,15 @@ package com.bookcatalog.api;
 import com.bookcatalog.UserProfileService;
 import com.bookcatalog.dto.BookDto;
 import com.bookcatalog.dto.ShelfDto;
+import com.bookcatalog.service.book.BookFacade;
+import com.bookcatalog.service.shelf.ShelfFacade;
 import com.bookcatalog.validation.ValidationException;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.validation.BindingResult;
-
-import javax.naming.Binding;
 
 import java.security.Principal;
 
@@ -22,6 +21,10 @@ import static org.mockito.Mockito.*;
 public class ShelfControllerTests {
     @Mock
     private UserProfileService userProfileService;
+    @Mock
+    private BookFacade bookFacade;
+    @Mock
+    private ShelfFacade shelfFacade;
     private ShelfController shelfController;
     private Principal principal;
     @Mock
@@ -33,7 +36,7 @@ public class ShelfControllerTests {
 
     @Before
     public void setUp() {
-        shelfController = new ShelfController(userProfileService);
+        shelfController = new ShelfController(bookFacade, shelfFacade);
         principal = () -> "test";
     }
 

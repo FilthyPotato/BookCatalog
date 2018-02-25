@@ -1,13 +1,14 @@
-package com.bookcatalog; 
+package com.bookcatalog;
 
+import com.bookcatalog.config.SpringConfig;
 import com.bookcatalog.dto.ShelfDto;
 import com.bookcatalog.dto.ShelfDtoConverter;
 import com.bookcatalog.model.Shelf;
-import org.junit.Test;
 import org.junit.Before;
+import org.junit.Test;
 
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
 
 public class ShelfDtoConverterTests {
 
@@ -15,7 +16,8 @@ public class ShelfDtoConverterTests {
 
     @Before
     public void setUp() {
-        shelfDtoConverter = new ShelfDtoConverter();
+        SpringConfig springConfig = new SpringConfig();
+        shelfDtoConverter = new ShelfDtoConverter(springConfig.modelMapper());
     }
 
     @Test
@@ -23,7 +25,7 @@ public class ShelfDtoConverterTests {
         ShelfDto shelfDto = new ShelfDto();
         shelfDto.setName("testName");
 
-        Shelf result = shelfDtoConverter.createFromDto(shelfDto);
+        Shelf result = shelfDtoConverter.fromDto(shelfDto);
 
         assertThat(result.getName(), is(shelfDto.getName()));
     }

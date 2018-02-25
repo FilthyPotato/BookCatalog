@@ -4,7 +4,6 @@ import lombok.Data;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -13,13 +12,13 @@ public class BookDto {
     @NotEmpty
     private String title;
     @Valid
-    private List<AuthorDto> authors = new ArrayList<>();
+    private List<AuthorDto> authors = null;
     private String description;
     private Integer pages;
     private String publishedDate;
     private String publisher;
     @Valid
-    private List<GenreDto> genres = new ArrayList<>();
+    private List<GenreDto> genres = null;
 
     public AuthorDto getAuthorDto(int index) {
         return authors.get(index);

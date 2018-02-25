@@ -1,6 +1,7 @@
 package com.bookcatalog.registration.model;
 
 import com.bookcatalog.model.UserProfile;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -24,6 +25,7 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
     private Collection<Role> roles;
 
+    @JsonIgnore
     @OneToOne(cascade = CascadeType.ALL)
     private UserProfile userProfile;
 }

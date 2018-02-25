@@ -7,8 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static java.util.stream.Collectors.toList;
-
 @Entity
 @Data
 public class Shelf {
@@ -35,5 +33,10 @@ public class Shelf {
         return books.stream()
                 .filter(b -> b.getId().equals(bookId))
                 .findFirst();
+    }
+
+    public boolean hasBook(Long bookId) {
+        return books.stream()
+                .anyMatch(b -> b.getId().equals(bookId));
     }
 }
