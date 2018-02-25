@@ -15,13 +15,7 @@ class BookRemover {
     public BookRemover(ShelfService shelfService) {
         this.shelfService = shelfService;
     }
-
-    /*TODO remove this comment later
-            Shelf N:M Book
-                - remove record in SHELVES_BOOKS
-                - if the book doesn't belong to any shelf, remove it
-                - keep the DB up-to-date (this applies to every operation).
-        */
+    
     public void removeBookFromShelf(Long bookId, Long shelfId) {
         Shelf shelf = shelfService.findOne(shelfId);
         if (shelf != null) {

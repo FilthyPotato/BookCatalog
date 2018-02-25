@@ -22,7 +22,6 @@ class BookUpdater {
         bookService.save(newBook);
     }
 
-    //TODO: not tested
     public void updateBook(Long bookId, BookDto bookDto) {
         Book book = bookService.findOne(bookId);
         if (book != null) {

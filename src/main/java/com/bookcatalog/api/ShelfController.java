@@ -43,7 +43,6 @@ public class ShelfController {
         return shelfDto;
     }
 
-    //#removeBookFromShelf does nothing when ids do not exist for given user
     @DeleteMapping("/shelf/{shelfId}/book/{bookId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteBookFromShelf(@PathVariable Long shelfId, @PathVariable Long bookId, Principal principal) {
