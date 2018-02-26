@@ -1,4 +1,4 @@
-package com.bookcatalog;
+package com.bookcatalog.service;
 
 import com.bookcatalog.model.UserProfile;
 import com.bookcatalog.repository.UserProfileRepository;

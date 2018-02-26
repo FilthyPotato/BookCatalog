@@ -1,4 +1,4 @@
-package com.bookcatalog.api;
+package com.bookcatalog.controllers;
 
 import com.bookcatalog.dto.BookDto;
 import com.bookcatalog.dto.NewBookDto;

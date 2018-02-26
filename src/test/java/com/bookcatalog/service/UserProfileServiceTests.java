@@ -1,7 +1,8 @@
-package com.bookcatalog;
+package com.bookcatalog.service;
 
 import com.bookcatalog.model.UserProfile;
 import com.bookcatalog.repository.UserProfileRepository;
+import com.bookcatalog.service.UserProfileService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;

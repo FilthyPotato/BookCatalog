@@ -1,4 +1,4 @@
-package com.bookcatalog;
+package com.bookcatalog.service;
 
 import com.bookcatalog.dto.BookDto;
 import com.bookcatalog.dto.BookDtoConverter;

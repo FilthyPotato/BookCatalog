@@ -1,8 +1,8 @@
 package com.bookcatalog.service.book;
 
-import com.bookcatalog.BookService;
-import com.bookcatalog.ShelfService;
-import com.bookcatalog.UserProfileService;
+import com.bookcatalog.service.BookService;
+import com.bookcatalog.service.ShelfService;
+import com.bookcatalog.service.UserProfileService;
 import com.bookcatalog.dto.BookDto;
 import com.bookcatalog.dto.NewBookDto;
 import com.bookcatalog.model.Book;

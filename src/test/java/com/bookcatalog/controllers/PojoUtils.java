@@ -1,4 +1,4 @@
-package com.bookcatalog.api;
+package com.bookcatalog.controllers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

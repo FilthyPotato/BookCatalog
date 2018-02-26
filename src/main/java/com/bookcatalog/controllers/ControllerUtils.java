@@ -1,4 +1,4 @@
-package com.bookcatalog.api;
+package com.bookcatalog.controllers;
 
 import com.bookcatalog.validation.ValidationException;
 import org.springframework.validation.BindingResult;

@@ -1,9 +1,6 @@
 package com.bookcatalog.exceptionhandlers;
 
 import com.bookcatalog.ValidationUtils;
-import com.bookcatalog.api.BookController;
-import com.bookcatalog.api.ShelfController;
-import com.bookcatalog.registration.controllers.RegistrationController;
 import com.bookcatalog.validation.ValidationErrorDto;
 import com.bookcatalog.validation.ValidationException;
 import org.springframework.http.HttpStatus;

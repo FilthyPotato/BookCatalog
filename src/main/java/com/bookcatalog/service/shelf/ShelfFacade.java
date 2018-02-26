@@ -1,6 +1,6 @@
 package com.bookcatalog.service.shelf;
 
-import com.bookcatalog.UserProfileService;
+import com.bookcatalog.service.UserProfileService;
 import com.bookcatalog.dto.ShelfDto;
 import com.bookcatalog.model.UserProfile;
 import org.springframework.stereotype.Service;
