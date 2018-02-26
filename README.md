@@ -19,14 +19,15 @@ BookCatalog is an application with REST API for book cataloguing.
 ## Endpoints
 - No authentication required:  
 	- **POST** `/registration` - creates a new user account
-
-			{
-				"username": "example",
-				"email": "e@mail.com",
-				"password": "password",
-				"confirmPassword": "password"
-			}
-		It's required to confirm the account through link sent to your email, so you might want to use a test account:
+        ```javascript
+        {
+            "username": "example",
+            "email": "e@mail.com",
+            "password": "password",
+            "confirmPassword": "password"
+        }
+		```
+		It's required to confirm the account through link sent to your email, so you might want to use a test account:  
 		**`test1@test.com`** / **`test1`**
 	
   **Only basic authentication is supported.**
@@ -61,9 +62,9 @@ BookCatalog is an application with REST API for book cataloguing.
     }
     ```
   - **POST** `/shelf/{shelfId}/book` - creates a books and adds it to shelf with id `shelfId`  
-		
-		JSON object as above, without the `shelfIds` field
-
+	```
+	JSON object as above, without the `shelfIds` field
+    ```
   - **GET** `/books` - return all user's books
 		
   - **GET** `/book/{id}` - returns book with specified id
@@ -77,24 +78,23 @@ BookCatalog is an application with REST API for book cataloguing.
   - **DELETE** `/shelf/{shelfId}/book/{bookId}` - removes a book with id `bookId` from shelf with id `shelfId`
 
   - **PUT** `/book/{id}` - modifies book information by replacing it with the specified data. Not present fields will be set to null.
-  
-        {
-            "title":  "Harry Potter and the Sorcerer's Stone",
-            "description": "Nice book"
-        }
-
-
-  - **PATCH** /`book/{id}` - modifies book information by changing only the specified fields.
-		
-        {
-            "title":  "Harry Potter and the Sorcerer's Stone",
-            "pages": 300
-        }
-
+    ```javascript
+    {
+        "title":  "Harry Potter and the Sorcerer's Stone",
+        "description": "Nice book"
+    }
+    ```
+  - **PATCH** /`book/{id}` - modifies book information by changing only the specified fields
+    ```javascript
+    {
+        "title":  "Harry Potter and the Sorcerer's Stone",
+        "pages": 300
+    }
+    ```
   - **PATCH** `/shelf/{id}` - changes shelf name
-		
-        {
-            "name": "new name"
-        }
-
+    ```javascript
+    {
+        "name": "new name"
+    }
+    ```
 
