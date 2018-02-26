@@ -34,31 +34,31 @@ BookCatalog is an application with REST API for book cataloguing.
 - Authentication required:  
 
   - **POST** `/shelf` - creates a new shelf
-
-			{
-				"name": "reading"
-			}
-			
+    ```json
+    {
+       "name": "reading"
+    }    
+    ```
   - **POST** `/book` - creates a book and adds it to shelves with id specified in a `shelfIds` field
 
-			{
-				"title":  "Harry Potter and the Sorcerer's Stone",
-				"authors": [
-					{
-						"name": "J. K. Rowling"
-					}
-				],
-				"description": "Nice book",
-				"pages": 250,
-				"publishedDate": "1997/06/26",
-				"publisher": "Scholastic",
-				"genres": [
-					{
-						"name": "Fantasy"
-					}
-				],
-				"shelfIds": [3]
-			}
+        {
+            "title":  "Harry Potter and the Sorcerer's Stone",
+            "authors": [
+                {
+                    "name": "J. K. Rowling"
+                }
+            ],
+            "description": "Nice book",
+            "pages": 250,
+            "publishedDate": "1997/06/26",
+            "publisher": "Scholastic",
+            "genres": [
+                {
+                    "name": "Fantasy"
+                }
+            ],
+            "shelfIds": [3]
+        }
 
   - **POST** `/shelf/{shelfId}/book` - creates a books and adds it to shelf with id `shelfId`  
 		
@@ -78,23 +78,23 @@ BookCatalog is an application with REST API for book cataloguing.
 
   - **PUT** `/book/{id}` - modifies book information by replacing it with the specified data. Not present fields will be set to null.
   
-			{
-				"title":  "Harry Potter and the Sorcerer's Stone",
-				"description": "Nice book"
-			}
+        {
+            "title":  "Harry Potter and the Sorcerer's Stone",
+            "description": "Nice book"
+        }
 
 
   - **PATCH** /`book/{id}` - modifies book information by changing only the specified fields.
 		
-			{
-				"title":  "Harry Potter and the Sorcerer's Stone",
-				"pages": 300
-			}
+        {
+            "title":  "Harry Potter and the Sorcerer's Stone",
+            "pages": 300
+        }
 
   - **PATCH** `/shelf/{id}` - changes shelf name
 		
-			{
-				"name": "new name"
-			}
+        {
+            "name": "new name"
+        }
 
 
