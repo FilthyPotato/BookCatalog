@@ -14,21 +14,23 @@ BookCatalog is an application with REST API for book cataloguing.
 - Java 8
 - Spring (Spring Boot, Spring MVC, Spring Security, Spring Data)
 - Hibernate
-- JUnit, Mocikto
+- JUnit, Mockito
 
 ## Endpoints
 - No authentication required:  
-	- **POST** `/registration` - creates a new user account
-        ```javascript
-        {
-            "username": "example",
-            "email": "e@mail.com",
-            "password": "password",
-            "confirmPassword": "password"
-        }
-		```
-		It's required to confirm the account through link sent to your email, so you might want to use a test account:  
-		**`test1@test.com`** / **`test1`**
+
+  - **POST** `/registration` - creates a new user account
+    
+    ```javascript
+    {
+        "username": "example",
+        "email": "e@mail.com",
+        "password": "password",
+        "confirmPassword": "password"
+    }
+    ```
+    It's required to confirm the account through link sent to your email, so you might want to use a test account:
+    **`test1@test.com`** / **`test1`**
 	
   **Only basic authentication is supported.**
 
