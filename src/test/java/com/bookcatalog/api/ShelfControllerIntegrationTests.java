@@ -64,7 +64,7 @@ public class ShelfControllerIntegrationTests {
 
     @Test
     public void booksOnShelf() throws Exception {
-        mockMvc.perform(get("/shelf/{id}", 1)
+        mockMvc.perform(get("/shelf/{id}/books", 1)
                 .principal(principal))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(2)))

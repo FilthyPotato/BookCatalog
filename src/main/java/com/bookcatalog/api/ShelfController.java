@@ -29,7 +29,7 @@ public class ShelfController {
         return shelfFacade.findAllShelvesSortById(principal.getName());
     }
 
-    @GetMapping("/shelf/{shelfId}")
+    @GetMapping("/shelf/{shelfId}/books")
     public List<Book> findAllBooksOnShelf(@PathVariable Long shelfId, Principal principal) {
         return bookFacade.findAllBooksOnShelf(shelfId, principal.getName());
     }
