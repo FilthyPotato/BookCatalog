@@ -34,32 +34,32 @@ BookCatalog is an application with REST API for book cataloguing.
 - Authentication required:  
 
   - **POST** `/shelf` - creates a new shelf
-    ```json
+    ```javascript
     {
        "name": "reading"
     }    
     ```
   - **POST** `/book` - creates a book and adds it to shelves with id specified in a `shelfIds` field
-
-        {
-            "title":  "Harry Potter and the Sorcerer's Stone",
-            "authors": [
-                {
-                    "name": "J. K. Rowling"
-                }
-            ],
-            "description": "Nice book",
-            "pages": 250,
-            "publishedDate": "1997/06/26",
-            "publisher": "Scholastic",
-            "genres": [
-                {
-                    "name": "Fantasy"
-                }
-            ],
-            "shelfIds": [3]
-        }
-
+    ```javascript
+    {
+        "title":  "Harry Potter and the Sorcerer's Stone",
+        "authors": [
+            {
+                "name": "J. K. Rowling"
+            }
+        ],
+        "description": "Nice book",
+        "pages": 250,
+        "publishedDate": "1997/06/26",
+        "publisher": "Scholastic",
+        "genres": [
+            {
+                "name": "Fantasy"
+            }
+        ],
+        "shelfIds": [3]
+    }
+    ```
   - **POST** `/shelf/{shelfId}/book` - creates a books and adds it to shelf with id `shelfId`  
 		
 		JSON object as above, without the `shelfIds` field
