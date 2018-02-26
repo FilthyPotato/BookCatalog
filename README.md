@@ -32,6 +32,13 @@ BookCatalog is an application with REST API for book cataloguing.
     It's required to confirm the account through link sent to your email, so you might want to use a test account:
     **`test1@test.com`** / **`test1`**
 	
+	For registration to work, two environment variables have to be set:
+    ```
+    mail.username=	(gmail domain)
+    mail.password=
+    ```
+    The email with activation link with be sent from this account.
+	
   **Only basic authentication is supported.**
 
 - Authentication required:  
