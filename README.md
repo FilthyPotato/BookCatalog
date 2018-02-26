@@ -93,7 +93,7 @@ BookCatalog is an application with REST API for book cataloguing.
         "description": "Nice book"
     }
     ```
-  - **PATCH** /`book/{id}` - modifies book information by changing only the specified fields
+  - **PATCH** `/book/{id}` - modifies book information by changing only the specified fields
     ```javascript
     {
         "title":  "Harry Potter and the Sorcerer's Stone",

@@ -1,32 +1,28 @@
 INSERT INTO ROLE(ID, NAME) VALUES(1, 'ROLE_USER');
 
 INSERT INTO USER_PROFILE(ID, EMAIL)
-VALUES  (0, 'system'),
-        (1, 'test1@test.com');
+VALUES  (1, 'test1@test.com');
 
 INSERT INTO USER(ID, USERNAME, EMAIL, PASSWORD, ENABLED, USER_PROFILE_ID)
-VALUES  (0, 'system', 'system', '#G#$G#$G#$G#', true, 0),
-        (1, 'test1', 'test1@test.com', '$2a$04$wgKdz3gUS/qmmEHL6eelLe0cqqcXzntRuAJZjeMapT0U0pK7FJsr.', true, 1);
+VALUES  (1, 'test1', 'test1@test.com', '$2a$04$wgKdz3gUS/qmmEHL6eelLe0cqqcXzntRuAJZjeMapT0U0pK7FJsr.', true, 1);
 
 INSERT INTO USERS_ROLES(USER_ID, ROLE_ID)
 VALUES  (1, 1);
 
 INSERT INTO AUTHOR(ID, NAME)
-VALUES  (1, 'Author1'),
-        (2, 'Author2');
+VALUES  (1, 'J. K. Rowling'),
+        (2, 'J.R.R Tolkien');
 
 INSERT INTO GENRE(ID, NAME)
-VALUES  (1, 'Genre1'),
-        (2, 'Genre2');
+VALUES  (1, 'Fantasy');
 
 INSERT INTO SHELF(ID, NAME, USER_PROFILE_ID)
-VALUES  (0, 'systemShelf', 0),
-        (1, 'Shelf1', 1),
-        (2, 'Shelf2', 1);
+VALUES  (1, 'Reading', 1),
+        (2, 'Favourite', 1);
 
 INSERT INTO BOOK(ID, TITLE, DESCRIPTION, PAGES, PUBLISHED_DATE, PUBLISHER)
-VALUES  (1, 'Title1', 'Description1', 100, '2015-06-12', 'Publisher1'),
-        (2, 'Title2', 'Description2', 200, '2015-06-12',  'Publisher2');
+VALUES  (1, 'Harry Potter and the Sorcerer''s Stone', 'Nice book', 250, '1997/06/26', 'Scholastic'),
+        (2, 'The Fellowship of the Ring (The Lord of the Rings, #1)', 'Awesome book', 461, '1954/07/29',  'Allen & Unwin');
 
 INSERT INTO BOOKS_AUTHORS (BOOK_ID, AUTHOR_ID)
 VALUES  (1, 1),
@@ -34,12 +30,11 @@ VALUES  (1, 1),
 
 INSERT INTO BOOKS_GENRES (BOOK_ID, GENRE_ID)
 VALUES  (1, 1),
-        (2, 2);
+        (2, 1);
 
 INSERT INTO SHELVES_BOOKS (SHELF_ID, BOOK_ID)
-VALUES  (0, 1),
-        (0, 2),
+VALUES  (1, 1),
         (1, 2),
-        (1, 2);
+        (2, 1);
 
 
