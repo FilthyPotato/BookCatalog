@@ -1,6 +1,5 @@
 package com.bookcatalog.service.book;
 
-import com.bookcatalog.service.BookService;
 import com.bookcatalog.dto.BookDto;
 import com.bookcatalog.model.Book;
 import org.springframework.stereotype.Service;

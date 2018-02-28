@@ -91,7 +91,6 @@ public class BookFacade {
     }
 
     public Long addBook(String email, NewBookDto newBookDto) {
-        //if(allShelvesBelongToUser())
         UserProfile userProfile = userProfileService.findByEmail(email);
         List<Long> shelfIds = newBookDto.getShelfIds();
         shelfIds.forEach(id -> throwIfShelfDoesNotBelongToUser(id, userProfile));

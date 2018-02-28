@@ -25,7 +25,7 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standal
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@Transactional      // fixes "Failed to lazily initialize a collection of role"
+@Transactional
 @TestPropertySource(locations = "classpath:test.properties")
 public class BookControllerIntegrationTests {
     private MockMvc mockMvc;

@@ -1,7 +1,6 @@
 package com.bookcatalog.service.book;
 
-import com.bookcatalog.service.BookService;
-import com.bookcatalog.service.ShelfService;
+import com.bookcatalog.service.shelf.ShelfService;
 import com.bookcatalog.service.UserProfileService;
 import com.bookcatalog.model.Book;
 import com.bookcatalog.model.Shelf;

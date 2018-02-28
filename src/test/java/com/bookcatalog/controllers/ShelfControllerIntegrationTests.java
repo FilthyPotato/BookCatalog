@@ -164,7 +164,6 @@ public class ShelfControllerIntegrationTests {
     @Ignore
     public void addBookToShelfWithErrors() {
         fail();
-        //check also if genres and authors are validated
     }
 
     private BookDto buildBookDto(String title) {

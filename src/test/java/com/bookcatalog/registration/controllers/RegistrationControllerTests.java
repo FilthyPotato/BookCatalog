@@ -20,7 +20,6 @@ import org.springframework.web.context.request.WebRequest;
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.*;
 
-//@RunWith(SpringJUnit4ClassRunner.class)
 @RunWith(MockitoJUnitRunner.class)
 public class RegistrationControllerTests {
     @Mock
@@ -42,11 +41,6 @@ public class RegistrationControllerTests {
     @Mock
     private User user;
     private String notRelevant = "";
-
-    @Before
-    public void setUp() {
-
-    }
 
     @Test(expected = ValidationException.class)
     public void whenValidationErrorsThenThrowsValidationException() {

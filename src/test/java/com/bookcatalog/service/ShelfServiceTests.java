@@ -4,7 +4,7 @@ import com.bookcatalog.dto.ShelfDto;
 import com.bookcatalog.dto.ShelfDtoConverter;
 import com.bookcatalog.model.Shelf;
 import com.bookcatalog.repository.ShelfRepository;
-import com.bookcatalog.service.ShelfService;
+import com.bookcatalog.service.shelf.ShelfService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;

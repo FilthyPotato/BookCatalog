@@ -37,9 +37,9 @@ public class AccountActivationServiceTests {
     }
 
     @Test(expected = InvalidTokenException.class)
-    public void throwsInvalidTokenExceptionIfTokenIsInvalid() throws InvalidTokenException, TokenExpiredException {
-        //Token is invalid if it's not present in a database.
+    public void throwsInvalidTokenExceptionIfTokenIsNotPresentInADatabase() throws InvalidTokenException, TokenExpiredException {
         when(verificationTokenRepository.findByToken(emptyTokenValue)).thenReturn(null);
+
         accountActivationService.activateAccount(emptyTokenValue);
     }
 
@@ -47,20 +47,25 @@ public class AccountActivationServiceTests {
     public void throwsTokenExpiredExceptionIfTokenHasExpired() throws InvalidTokenException, TokenExpiredException {
         when(verificationTokenRepository.findByToken(emptyTokenValue)).thenReturn(token);
         when(token.hasExpired()).thenReturn(true);
+
         accountActivationService.activateAccount(emptyTokenValue);
     }
 
     @Test
     public void whenTokenIsValidAndDidNotExpireThenUserAccountIsEnabled() throws TokenExpiredException, InvalidTokenException {
         whenTokenIsValidAndDidNotExpire(emptyTokenValue);
+
         accountActivationService.activateAccount(emptyTokenValue);
+
         assertThat(user.isEnabled(), is(true));
     }
 
     @Test
     public void whenTokenIsValidAndDidNotExpireThenUserIsUpdatedInDatabase() throws TokenExpiredException, InvalidTokenException {
         whenTokenIsValidAndDidNotExpire(emptyTokenValue);
+
         accountActivationService.activateAccount(emptyTokenValue);
+
         verify(userRepository, times(1)).save(user);
     }
 

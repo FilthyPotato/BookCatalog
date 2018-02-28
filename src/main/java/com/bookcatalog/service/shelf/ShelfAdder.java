@@ -1,6 +1,5 @@
 package com.bookcatalog.service.shelf;
 
-import com.bookcatalog.service.ShelfService;
 import com.bookcatalog.service.UserProfileService;
 import com.bookcatalog.dto.ShelfDto;
 import com.bookcatalog.dto.ShelfDtoConverter;

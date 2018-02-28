@@ -14,7 +14,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String username;
-    @Column(length = 60)    // BCrypt's value is 60 characters long
+    @Column(length = 60)
     private String password;
     private String email;
     private boolean enabled = false;

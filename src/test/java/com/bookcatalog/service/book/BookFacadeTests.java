@@ -1,7 +1,6 @@
 package com.bookcatalog.service.book;
 
-import com.bookcatalog.service.BookService;
-import com.bookcatalog.service.ShelfService;
+import com.bookcatalog.service.shelf.ShelfService;
 import com.bookcatalog.service.UserProfileService;
 import com.bookcatalog.dto.BookDto;
 import com.bookcatalog.dto.NewBookDto;
@@ -86,14 +85,6 @@ public class BookFacadeTests {
 //    public void ownerHasBookButOnDifferentShelfThanSpecified_...() {
 //    }
 
-    //    @Test
-//    public void ownerDoesNotHaveBook_removeBookFromShelf_doNothing() {
-//        Shelf shelfIdOne = getShelf(userMain, 1L);
-//
-//        bookFacade.removeBookFromShelf(emailMain, 10L, 1L);
-//
-//        verify(shelfService, never()).save(shelfIdOne);
-//    }
 
     @Test
     public void notOwner_removeBookFromShelf_doNothing() {
@@ -201,7 +192,6 @@ public class BookFacadeTests {
 
     @Test
     public void owner_replaceBook_replaceBookDataOnAllShelves() {
-        //Create new book, set id of the old, save = replace
         BookDto bookDto = new BookDto();
         Book book = new Book();
         book.setId(null);

@@ -40,21 +40,23 @@ public class RegistrationMailSenderTests {
     }
 
     @Test
-    public void initRegistrationConfirmationSavesVerificationTokenToDatabase() {
-        //1. saves verificationToken to db (no need to see if the data is valid, since verificationTokenMaker is
-        //responsible for that and it has been tested)
+    public void sendRegistrationMail_createAndSaveVerificationTokenToDatabase() {
         when(verificationTokenMaker.createVerificationToken(user)).thenReturn(expectedToken);
+
         registrationMailSender.sendRegistrationMail(user, null, null);
+
         verify(verificationTokenRepository, times(1)).save(expectedToken);
     }
 
     @Test
-    public void initRegistrationConfirmationSendsEmailToUser() {
+    public void sendRegistrationMail_sendEmailToUser() {
         when(verificationTokenMaker.createVerificationToken(user)).thenReturn(expectedToken);
         when(user.getEmail()).thenReturn(mailDestination);
         when(expectedToken.getToken()).thenReturn(token);
         when(registrationMailGenerator.generateMail(mailDestination, host, contextName, token)).thenReturn(mailMessage);
+
         registrationMailSender.sendRegistrationMail(user, host, contextName);
+
         verify(mailService, times(1)).send(mailMessage);
     }
 }

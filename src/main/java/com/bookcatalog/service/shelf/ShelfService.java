@@ -1,4 +1,4 @@
-package com.bookcatalog.service;
+package com.bookcatalog.service.shelf;
 
 import com.bookcatalog.dto.ShelfDto;
 import com.bookcatalog.dto.ShelfDtoConverter;

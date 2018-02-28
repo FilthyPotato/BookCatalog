@@ -4,7 +4,7 @@ import com.bookcatalog.dto.BookDto;
 import com.bookcatalog.dto.BookDtoConverter;
 import com.bookcatalog.model.Book;
 import com.bookcatalog.repository.BookRepository;
-import com.bookcatalog.service.BookService;
+import com.bookcatalog.service.book.BookService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;

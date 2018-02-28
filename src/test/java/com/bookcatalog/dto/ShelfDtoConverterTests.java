@@ -1,4 +1,4 @@
-package com.bookcatalog;
+package com.bookcatalog.dto;
 
 import com.bookcatalog.config.SpringConfig;
 import com.bookcatalog.dto.ShelfDto;
