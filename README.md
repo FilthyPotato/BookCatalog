@@ -37,7 +37,7 @@ BookCatalog is an application with REST API for book cataloguing.
     mail.username=	(gmail domain)
     mail.password=
     ```
-    The email with activation link with be sent from this account.
+    The email with activation link will be sent from this account.
 	
   **Only basic authentication is supported.**
 
@@ -49,7 +49,7 @@ BookCatalog is an application with REST API for book cataloguing.
        "name": "reading"
     }    
     ```
-  - **POST** `/book` - creates a book and adds it to shelves with id specified in a `shelfIds` field
+  - **POST** `/book` - creates a book and adds it to shelves with ids specified in a `shelfIds` field
     ```javascript
     {
         "title":  "Harry Potter and the Sorcerer's Stone",
