@@ -58,7 +58,7 @@ BookCatalog is an application with REST API for book cataloguing.
                 "name": "J. K. Rowling"
             }
         ],
-        "description": "Nice book",
+        "description": "Decent book",
         "pages": 250,
         "publishedDate": "1997/06/26",
         "publisher": "Scholastic",
